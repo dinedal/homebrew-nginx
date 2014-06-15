@@ -1,3 +1,4 @@
+# coding: utf-8
 require 'formula'
 
 class NginxFull < Formula
@@ -49,6 +50,7 @@ class NginxFull < Formula
       'auth-digest' => 'Compile with support for Auth Digest Module',
       'set-misc' => 'Compile with support for Set Misc Module',
       'redis2' => 'Compile with support for Redis2 Module',
+      'lua-redis-parser' => 'Compile with support for LuaRedisParser Module',
       'array-var' => 'Compile with support for Array Var Module',
       'accept-language' => 'Compile with support for Accept Language Module',
       'accesskey' => 'Compile with support for HTTP Access Key Module',
@@ -194,7 +196,7 @@ class NginxFull < Formula
     args << passenger_config_args if build.with? 'passenger'
 
     # Install LuaJit
-    if build.with? 'lua-module'
+    if build.with? 'lua-module' || 'lua-redis-parser-module'
       luajit_path = `brew --prefix luajit`.chomp
       ENV['LUAJIT_LIB'] = "#{luajit_path}/lib"
       ENV['LUAJIT_INC'] = "#{luajit_path}/include/luajit-2.0"
